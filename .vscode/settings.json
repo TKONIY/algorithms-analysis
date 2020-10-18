@@ -1,8 +1,0 @@
-{
-    "C_Cpp.clang_format_fallbackStyle": "Google",
-    "files.associations": {
-        "*.md": "markdown",
-        "cstdlib": "cpp",
-        "cstdio": "cpp"
-    }
-}
