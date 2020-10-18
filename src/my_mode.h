@@ -39,8 +39,8 @@ class FindTheMode {
     if (largest < r1 - l1 + 1) {
       largest = r1 - l1 + 1;
       element_i = mid_i;
-      if (l1 - l > largest) RecurFind(l, l1 - 1);
-      if (r - r1 > largest) RecurFind(r1 + 1, r);
     }
+    if (l1 - l > largest) RecurFind(l, l1 - 1);
+    if (r - r1 > largest) RecurFind(r1 + 1, r);
   }
 };

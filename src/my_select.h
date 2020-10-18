@@ -6,7 +6,7 @@ class Select {
   /* select kth min elements, k range from 0, which diff from textbook*/
   /* return index instead of value*/
   static int LinearSelect(T a[], int l, int r, int k) {
-    if (r - l < 75) {
+    if (r - l < 5) {
       QSort<T>::RandomizeQSort(a, l, r);
       return l + k;
     }
