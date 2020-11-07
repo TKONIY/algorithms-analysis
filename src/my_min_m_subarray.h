@@ -11,9 +11,7 @@ class MinSubarraySplit {
 
   void DP() {
     dp[n - 1][1] = a[n - 1];
-    for (int i = n - 2; i >= 0; --i) {
-      dp[i][1] = a[i] + dp[i + 1][1];
-    }
+    for (int i = n - 2; i >= 0; --i) dp[i][1] = a[i] + dp[i + 1][1];
 
     for (int j = 2; j <= m; ++j) {
       for (int i = 0; i <= n - j; ++i) {
@@ -21,8 +19,8 @@ class MinSubarraySplit {
         int min_sum = Utils<int>::Max(sum_ai, dp[i + 1][j - 1]);  //初始化最优解
         for (int p = i + 1; p <= n - j; ++p) {
           sum_ai += a[p];
-          min_sum = Utils<int>::Min(min_sum,
-                                    Utils<int>::Max(sum_ai, dp[p + 1][j - 1]));
+          min_sum = Utils<int>::Min(Utils<int>::Max(sum_ai, dp[p + 1][j - 1]),
+                                    min_sum);
         }
         dp[i][j] = min_sum;
       }
