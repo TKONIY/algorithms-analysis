@@ -2,6 +2,9 @@
 template <class T>
 class FindTheMode {
  public:
+  /** todo 这些都应该设置成private, 但是由于为了让代码简洁,
+   * 就直接暴露在外面好了吧
+   */
   int largest;   /*最大出现次数*/
   int element_i; /*元素下标*/
   T* a;          /*数组*/

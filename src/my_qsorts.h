@@ -5,9 +5,6 @@
  *  simple implemention for
  *
  */
-#include <cstdlib>
-#include <vector>
-
 #include "my_utils.h"
 
 template <class T>
