@@ -1,7 +1,6 @@
+#include "my_matrix_chain.h"
+
 #include <cstdio>
 #include <vector>
-
-#include "my_select.h"
 int main() {
-  // debug
 }

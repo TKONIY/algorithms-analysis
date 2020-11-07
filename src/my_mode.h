@@ -2,9 +2,9 @@
 template <class T>
 class FindTheMode {
  public:
-  int largest;
-  int element_i;
-  T* a;
+  int largest;   /*最大出现次数*/
+  int element_i; /*元素下标*/
+  T* a;          /*数组*/
 
   FindTheMode(T a[], int l, int r) : a(a), largest(1), element_i(0) {
     RecurFind(l, r);
