@@ -7,7 +7,7 @@
  * 中间:
  * m[i,j]为子树x[i~j]的最小耗费
  * w[i,j]为子树x[i~j]的概率和
- *
+ * 長度都是N+2
  * w[i][j] = w[i][j-1] + a[j] + b[j]
  * implys: w[i][i] = w[i][i-1] + a[i] + b[i]
  *                 = a[i-1] + a[i] + b[i]
@@ -24,14 +24,14 @@ class OptimalBST {
   int** m;
   int** s;
 
-  void DP() {
+  void DP1() {
     // init
     for (int i = 0; i <= n; ++i) {
       w[i + 1][i] = a[i];
       m[i + 1][i] = 0;
     }
     // dp
-    for (int r = 0; r < n; r++) {  //间距最大为n-1
+    for (int r = 0; r < n; ++r) {  //间距最大为n-1
       for (int i = 1; i <= n - r; ++i) {
         int j = i + r;
         w[i][j] = w[i][j - 1] + a[j] + b[j];
@@ -43,24 +43,26 @@ class OptimalBST {
             m[i][j] = t;
             s[i][j] = k;
           }
-          m[i][j] += w[i][j];
         }
+        m[i][j] += w[i][j];
       }
     }
   }
 
  public:
-  OptimalBST(int len, const int* arra_a, const int* arr_b)
+  OptimalBST(int len, const int* arra_a, const int* arr_b, int algorithm = 1)
       : n(len), a(arra_a), b(arr_b) {
-    w = Utils<int>::New2Darray(n);
-    m = Utils<int>::New2Darray(n);
-    s = Utils<int>::New2Darray(n);
-    DP();
+    w = Utils<int>::New2Darray(n + 2);
+    m = Utils<int>::New2Darray(n + 2);
+    s = Utils<int>::New2Darray(n + 2);
+    DP1();
   }
   ~OptimalBST() {
-    Utils<int>::Delete2Darray(w, n);
-    Utils<int>::Delete2Darray(w, n);
-    Utils<int>::Delete2Darray(w, n);
+    Utils<int>::Delete2Darray(w, n + 2);
+    Utils<int>::Delete2Darray(m, n + 2);
+    Utils<int>::Delete2Darray(s, n + 2);
   }
   const int* const* get_s() const { return s; }
+  const int* const* get_w() const { return w; }
+  const int* const* get_m() const { return m; }
 };

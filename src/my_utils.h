@@ -30,7 +30,7 @@ class Utils {
   static void Cout2Darray(const T* const* a, int n, int m) {
     for (int i = 0; i < n; ++i) {
       for (int j = 0; j < m; ++j) {
-        std::cout << a[i] << " ";
+        std::cout << a[i][j] << " ";
       }
       std::cout <<std::endl;
     }
