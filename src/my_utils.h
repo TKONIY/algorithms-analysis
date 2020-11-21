@@ -35,13 +35,4 @@ class Utils {
       std::cout <<std::endl;
     }
   }
-
-  // 红包算法 生成n个和为sum的整数
-  static void RedPackages(int n, int sum, int* arr) {
-    for (int i = n - 1; i > 0; --i) {  // i+1 为剩余红包数
-      arr[i] = rand() % (sum * 2 / (i + 1));
-      sum -= arr[i];
-    }
-    arr[0] = sum;
-  }
 };
