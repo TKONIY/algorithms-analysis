@@ -1,3 +1,4 @@
+#pragma once
 #include "my_select.h"
 template <class T>
 class FindTheMode {

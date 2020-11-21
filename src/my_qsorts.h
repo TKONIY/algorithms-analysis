@@ -5,6 +5,8 @@
  *  simple implemention for
  *
  */
+#pragma once
+
 #include "my_utils.h"
 
 template <class T>

@@ -1,3 +1,4 @@
+#pragma once
 #include "my_qsorts.h"
 
 template <class T>

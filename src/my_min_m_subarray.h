@@ -1,6 +1,7 @@
 // 最小子段和, 划分成m个子段, 找一个划分方法,
 // 使得其中最大的子段的和在所有划分方法里面最小
 // todo 类里面可以存分段策略
+#pragma once
 #include "my_utils.h"
 class MinSubarraySplit {
  private:
