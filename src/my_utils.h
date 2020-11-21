@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template <class T>
 class Utils {
@@ -24,6 +25,15 @@ class Utils {
   static void Delete2Darray(T** a, int row) {
     for (int i = 0; i < row; ++i) delete[] a[i];
     delete[] a;
+  }
+
+  static void Cout2Darray(const T* const* a, int n, int m) {
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
+        std::cout << a[i] << " ";
+      }
+      std::cout <<std::endl;
+    }
   }
 
   // 红包算法 生成n个和为sum的整数

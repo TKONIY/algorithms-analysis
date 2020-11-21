@@ -14,9 +14,7 @@
  *       ∴    w[i+1][i] = a[i]
  */
 #pragma once
-
 #include "my_utils.h"
-
 class OptimalBST {
  private:
   int n;
@@ -57,10 +55,12 @@ class OptimalBST {
     w = Utils<int>::New2Darray(n);
     m = Utils<int>::New2Darray(n);
     s = Utils<int>::New2Darray(n);
+    DP();
   }
   ~OptimalBST() {
     Utils<int>::Delete2Darray(w, n);
     Utils<int>::Delete2Darray(w, n);
     Utils<int>::Delete2Darray(w, n);
   }
+  const int* const* get_s() const { return s; }
 };
