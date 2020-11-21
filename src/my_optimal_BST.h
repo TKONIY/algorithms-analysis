@@ -49,13 +49,53 @@ class OptimalBST {
     }
   }
 
+  void DP2() {
+    for (int i = 0; i <= n; ++i) {
+      w[i + 1][i] = a[i];
+      m[i + 1][i] = 0;
+      s[i + 1][i] = 0;  // 初始化为0, 缩小ij范围时使用, 约束,防止出错
+    }
+
+    for (int r = 0; r < n; ++r) {  //间距最大为n-1
+      for (int i = 1; i <= n - r; ++i) {
+        int j = i + r;
+        // 使用Knuth的改进缩小(i,j)范围到(i1, j1),
+        int i1 = s[i][j - 1] > i ? s[i][j - 1] : i;
+        int j1 = s[i][j - 1] > i ? s[i + 1][j] : j;
+
+        w[i][j] = w[i][j - 1] + a[j] + b[j];
+        m[i][j] = m[i][i1 - 1] + m[i1 + 1][j];  //初始从i1开始
+        s[i][j] = i;
+        for (int k = i1 + 1; k <= j1; ++k) {  //到j1结束
+          int t = m[i][k - 1] + m[k + 1][j];
+          if (t < m[i][j]) {
+            m[i][j] = t;
+            s[i][j] = k;
+          }
+        }
+        m[i][j] += w[i][j];
+      }
+    }
+  }
+
  public:
   OptimalBST(int len, const int* arra_a, const int* arr_b, int algorithm = 1)
       : n(len), a(arra_a), b(arr_b) {
     w = Utils<int>::New2Darray(n + 2);
     m = Utils<int>::New2Darray(n + 2);
     s = Utils<int>::New2Darray(n + 2);
-    DP1();
+
+    switch (algorithm) {
+      case 1:
+        DP1();
+        break;
+      case 2:
+        DP2();
+        break;
+      default:
+        std::cout << "please choose algorithm in [1, 2]" << std::endl;
+        break;
+    }
   }
   ~OptimalBST() {
     Utils<int>::Delete2Darray(w, n + 2);
