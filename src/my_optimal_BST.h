@@ -18,10 +18,10 @@
 class OptimalBST {
  private:
   int n;
-  const int* a;
-  const int* b;
-  int** w;
-  int** m;
+  const double* a;
+  const double* b;
+  double** w;
+  double** m;
   int** s;
 
   void DP1() {
@@ -38,7 +38,7 @@ class OptimalBST {
         m[i][j] = m[i + 1][j];  //最后才加w[i][j], 作比较的只是m
         s[i][j] = i;            //初值设置i为根节点
         for (int k = i + 1; k <= j; ++k) {  //从第i+1个根节点开始考虑
-          int t = m[i][k - 1] + m[k + 1][j];
+          double t = m[i][k - 1] + m[k + 1][j];
           if (t < m[i][j]) {
             m[i][j] = t;
             s[i][j] = k;
@@ -67,7 +67,7 @@ class OptimalBST {
         m[i][j] = m[i][i1 - 1] + m[i1 + 1][j];  //初始从i1开始
         s[i][j] = i;
         for (int k = i1 + 1; k <= j1; ++k) {  //到j1结束
-          int t = m[i][k - 1] + m[k + 1][j];
+          double t = m[i][k - 1] + m[k + 1][j];
           if (t < m[i][j]) {
             m[i][j] = t;
             s[i][j] = k;
@@ -78,11 +78,18 @@ class OptimalBST {
     }
   }
 
+  int dfs_height(int i, int j) const {
+    if (i > j) return 0;
+    return 1 + Utils<int>::Max(dfs_height(i, s[i][j] - 1),
+                               dfs_height(s[i][j] + 1, j));
+  }
+
  public:
-  OptimalBST(int len, const int* arra_a, const int* arr_b, int algorithm = 1)
+  OptimalBST(int len, const double* arra_a, const double* arr_b,
+             int algorithm = 1)
       : n(len), a(arra_a), b(arr_b) {
-    w = Utils<int>::New2Darray(n + 2);
-    m = Utils<int>::New2Darray(n + 2);
+    w = Utils<double>::New2Darray(n + 2);
+    m = Utils<double>::New2Darray(n + 2);
     s = Utils<int>::New2Darray(n + 2);
 
     switch (algorithm) {
@@ -98,11 +105,17 @@ class OptimalBST {
     }
   }
   ~OptimalBST() {
-    Utils<int>::Delete2Darray(w, n + 2);
-    Utils<int>::Delete2Darray(m, n + 2);
+    Utils<double>::Delete2Darray(w, n + 2);
+    Utils<double>::Delete2Darray(m, n + 2);
     Utils<int>::Delete2Darray(s, n + 2);
   }
   const int* const* get_s() const { return s; }
-  const int* const* get_w() const { return w; }
-  const int* const* get_m() const { return m; }
+  const double* const* get_w() const { return w; }
+  const double* const* get_m() const { return m; }
+
+  //计算树高
+  int get_height() const {
+    int i = 1, j = n;
+    return dfs_height(i, j);
+  }
 };

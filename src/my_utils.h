@@ -18,7 +18,10 @@ class Utils {
 
   static T** New2Darray(int n, int m) {
     T** a = new T*[n];
-    for (int i = 0; i < n; ++i) a[i] = new T[m];
+    for (int i = 0; i < n; ++i) {
+      a[i] = new T[m];
+      std::fill(a[i], a[i] + n, 0);
+    }
     return a;
   }
 
@@ -27,12 +30,22 @@ class Utils {
     delete[] a;
   }
 
+  static T Sum1Darray(const T* a, int n) {
+    T sum = 0;
+    for (int i = 0; i < n; ++i) sum += a[i];
+    return sum;
+  }
+
   static void Cout2Darray(const T* const* a, int n, int m) {
     for (int i = 0; i < n; ++i) {
       for (int j = 0; j < m; ++j) {
         std::cout << a[i][j] << " ";
       }
-      std::cout <<std::endl;
+      std::cout << std::endl;
     }
+  }
+  static void Cout1Darray(const T* a, int n) {
+    for (int i = 0; i < n; ++i) std::cout << a[i] << " ";
+    std::cout << std::endl;
   }
 };
