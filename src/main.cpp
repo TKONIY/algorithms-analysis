@@ -1,19 +1,26 @@
-#include <cmath>
 #include <fstream>
+#include <iostream>
 
-#include "my_optimal_BST.h"
+#include "my_subset_sum.h"
+#include "my_utils.h"
 int main() {
-  //生成a b的数据
-  // const int n = 5;
-  // int a[n + 1]{5, 10, 5, 5, 5, 10};
-  // int b[n + 1]{0, 15, 10, 5, 10, 20}; 
-  // auto bst = OptimalBST(n, a, b,1);
-  // Utils<int>::Cout2Darray(bst.get_w(), n + 2, n + 2);
-  // std::cout << std::endl;
-  // Utils<int>::Cout2Darray(bst.get_m(), n + 2, n + 2);
-  // std::cout << std::endl;
-  // Utils<int>::Cout2Darray(bst.get_s(), n + 2, n + 2);
-  // std::cout << std::endl;
+  std::ifstream is("input.txt");
+  if (!is.is_open()) std::cout << "文件没开" << std::endl;
+  std::ofstream os("output.txt");
 
+  int n, c;
+  is >> n >> c;
+  int* S = new int[n + 1];
+  for (int i = 1; i <= n; ++i) is >> S[i];
+
+  SubsetSum s(S, n, c);
+  if (!s.found) {
+    os << "No Solution!";
+    return 0;
+  }
+  for (int i = 1; i <= n; ++i) {
+    if (s.x[i]) os << S[i] << " ";
+  }
+  os << std::endl;
+  return 0;
 }
-
