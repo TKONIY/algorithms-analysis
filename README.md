@@ -8,3 +8,4 @@
 | [3.2 矩阵连乘](src/my_matrix_chain.h)          |
 | [3-9 最小m段和问题](src/my_m_subarray.h)       |
 | [3-15 收集样本问题](src/my_collection_route.h) |
+| [5-1 子集和问题](src/my_subset_sum.h)
