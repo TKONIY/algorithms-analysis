@@ -48,4 +48,14 @@ class Utils {
     for (int i = 0; i < n; ++i) std::cout << a[i] << " ";
     std::cout << std::endl;
   }
+
+  static void Ostream2Darray(const T* const* a, int n, int m,
+                             std::ostream& os = std::cout) {
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
+        os << a[i][j] << " ";
+      }
+      os << std::endl;
+    }
+  }
 };
