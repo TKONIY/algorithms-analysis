@@ -20,7 +20,7 @@ class Utils {
     T** a = new T*[n];
     for (int i = 0; i < n; ++i) {
       a[i] = new T[m];
-      std::fill(a[i], a[i] + n, 0);
+      std::fill(a[i], a[i] + m, 0);
     }
     return a;
   }
