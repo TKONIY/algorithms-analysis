@@ -9,6 +9,7 @@
 #include "my_utils.h"
 
 template <class T>
+//从小到大排序, 使用<=号
 class QSort {
  public:
   static int Partition(T a[], int l, int r, int pivot_i) {
