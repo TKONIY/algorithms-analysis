@@ -11,3 +11,4 @@
 | [5-1 子集和问题](src/my_subset_sum.h)           |
 | [5-12 罗密欧与朱丽叶的迷宫问题](src/my_maze.h)  |
 | [6-10 世界名画陈列馆问题](src/my_robot_guard.h) |
+| [4-2 最优合并问题](src/my_best_merge.h)         |
